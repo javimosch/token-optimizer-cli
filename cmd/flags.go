@@ -10,7 +10,7 @@ import (
 func parseFlags(args []string) (paths []string, json bool, human bool) {
 	for _, a := range args {
 		switch a {
-		case "--json", "--format=json":
+		case "--json", "--format=json", "-j":
 			json = true
 		case "--human", "--format=human":
 			human = true
