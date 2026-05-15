@@ -10,9 +10,9 @@ import (
 func parseFlags(args []string) (paths []string, json bool, human bool) {
 	for _, a := range args {
 		switch a {
-		case "--json":
+		case "--json", "--format=json":
 			json = true
-		case "--human":
+		case "--human", "--format=human":
 			human = true
 		default:
 			if !strings.HasPrefix(a, "-") {
