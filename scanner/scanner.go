@@ -84,7 +84,7 @@ func Scan(root string, json bool) (*ScanResult, error) {
 		}
 
 		ext := strings.ToLower(filepath.Ext(path))
-		if binaryExts[ext] {
+		if binaryExts[ext] || info.Size() > 10*1024*1024 {
 			return nil
 		}
 
