@@ -41,6 +41,12 @@ var skipDirs = map[string]bool{
 	"vendor": true, ".pytest_cache": true,
 }
 
+var skipFiles = map[string]bool{
+	"token-optimizer-cli": true,
+	"token-optimizer-cli-linux-amd64.tar.gz": true,
+	"token-optimizer-cli-linux-amd64.tar.gz.sha256": true,
+}
+
 var binaryExts = map[string]bool{
 	".png": true, ".jpg": true, ".jpeg": true, ".gif": true,
 	".ico": true, ".svg": true, ".woff": true, ".woff2": true,
@@ -84,7 +90,7 @@ func Scan(root string, json bool) (*ScanResult, error) {
 		}
 
 		ext := strings.ToLower(filepath.Ext(path))
-		if binaryExts[ext] || info.Size() > 10*1024*1024 {
+		if binaryExts[ext] || skipFiles[info.Name()] || info.Size() > 10*1024*1024 {
 			return nil
 		}
 
